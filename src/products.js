@@ -126,4 +126,36 @@ $(() => {
       $("#main").html(table);
     }
   });
+  $("#searchData").click(() => {
+    let val = $("#searchedText").val();
+    isSearch = false;
+    let table =
+      '<table border="1" style="text-align:center"><tr><th>ID</th><th>Name</th><th>Brand</th><th>Operating System</th><th>Remove</th></tr>';
+    for (let i = 0; i < data.length; i++) {
+      if (
+        data[i].name.toLocaleLowerCase() == val.toLocaleLowerCase() ||
+        data[i].id == val
+      ) {
+        table +=
+          "<tr><td>" +
+          data[i].id +
+          "</td><td>" +
+          data[i].name +
+          "</td><td>" +
+          data[i].brand +
+          "</td><td>" +
+          data[i].os +
+          '</td><td><a href="#" style="text-decoration:none;color:black" onclick="deleteItem(\'' +
+          data[i].id +
+          "')\">X</a></td></tr>";
+        isSearch = true;
+      }
+    }
+    if (isSearch == false) {
+      $("#main").html("No such element exists");
+    } else {
+      table += "</table>";
+      $("#main").html(table);
+    }
+  });
 });
