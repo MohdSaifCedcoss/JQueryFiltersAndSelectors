@@ -36,10 +36,16 @@ var products = [
     os: "Windows",
   },
 ];
-var data = products;
+//Making a copied array of original data so that the original one remain untouched
+data = [];
+let m = 0;
+products.forEach((element) => {
+  data[m++] = element;
+});
 
 $(() => {
   display();
+  //    display function which will show us the table at the time of page loading
   function display() {
     if (data.length == 0) {
       $("#main").html("Nothing to show");
@@ -56,7 +62,7 @@ $(() => {
           element.brand +
           "</td><td>" +
           element.os +
-          '</td><td><a href="#" style="text-decoration:none;color:black" onclick="deleteItem(\'' +
+          '</td><td><a href="#" onclick="deleteItem(\'' +
           element.id +
           "')\">X</a></td></tr>";
       });
@@ -64,6 +70,7 @@ $(() => {
       $("#main").html(table);
     }
   }
+  //   This method will temporaly delete the product from the dummy array
   deleteItem = (val) => {
     for (let i = 0; i < data.length; i++) {
       if (data[i].id == val) {
@@ -72,26 +79,27 @@ $(() => {
       }
     }
   };
-  $("#filterOS").mouseleave(() => {
+  //this method will filter the table on the basis of OS
+  $("#filterOS").click(() => {
     let text = $("#filterOS").val();
     if (text == "none") {
       display();
     } else {
       let table =
         '<table border="1" style="text-align:center"><tr><th>ID</th><th>Name</th><th>Brand</th><th>Operating System</th><th>Remove</th></tr>';
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].os.toLowerCase() == text) {
+      for (let i = 0; i < products.length; i++) {
+        if (products[i].os.toLowerCase() == text) {
           table +=
             "<tr><td>" +
-            data[i].id +
+            products[i].id +
             "</td><td>" +
-            data[i].name +
+            products[i].name +
             "</td><td>" +
-            data[i].brand +
+            products[i].brand +
             "</td><td>" +
-            data[i].os +
-            '</td><td><a href="#" style="text-decoration:none;color:black" onclick="deleteItem(\'' +
-            data[i].id +
+            products[i].os +
+            '</td><td><a href="#" onclick="deleteItem(\'' +
+            products[i].id +
             "')\">X</a></td></tr>";
         }
       }
@@ -99,26 +107,27 @@ $(() => {
       $("#main").html(table);
     }
   });
-  $("#filterBrand").mouseleave(() => {
+  //   this method will filter the table on the basis of brands
+  $("#filterBrand").click(() => {
     let text = $("#filterBrand").val();
     if (text == "none") {
       display();
     } else {
       let table =
         '<table border="1" style="text-align:center"><tr><th>ID</th><th>Name</th><th>Brand</th><th>Operating System</th><th>Remove</th></tr>';
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].brand.toLowerCase() == text) {
+      for (let i = 0; i < products.length; i++) {
+        if (products[i].brand.toLowerCase() == text) {
           table +=
             "<tr><td>" +
-            data[i].id +
+            products[i].id +
             "</td><td>" +
-            data[i].name +
+            products[i].name +
             "</td><td>" +
-            data[i].brand +
+            products[i].brand +
             "</td><td>" +
-            data[i].os +
-            '</td><td><a href="#" style="text-decoration:none;color:black" onclick="deleteItem(\'' +
-            data[i].id +
+            products[i].os +
+            '</td><td><a href="#" onclick="deleteItem(\'' +
+            products[i].id +
             "')\">X</a></td></tr>";
         }
       }
@@ -126,27 +135,29 @@ $(() => {
       $("#main").html(table);
     }
   });
+  //Method for searching the data in the original array which is unmodified on the basis of id and name
   $("#searchData").click(() => {
     let val = $("#searchedText").val();
+    console.log("value+ " + val);
     isSearch = false;
     let table =
       '<table border="1" style="text-align:center"><tr><th>ID</th><th>Name</th><th>Brand</th><th>Operating System</th><th>Remove</th></tr>';
-    for (let i = 0; i < data.length; i++) {
+    for (let i = 0; i < products.length; i++) {
       if (
-        data[i].name.toLocaleLowerCase() == val.toLocaleLowerCase() ||
-        data[i].id == val
+        products[i].name.toLowerCase() == val.toLowerCase() ||
+        products[i].id == val
       ) {
         table +=
           "<tr><td>" +
-          data[i].id +
+          products[i].id +
           "</td><td>" +
-          data[i].name +
+          products[i].name +
           "</td><td>" +
-          data[i].brand +
+          products[i].brand +
           "</td><td>" +
-          data[i].os +
-          '</td><td><a href="#" style="text-decoration:none;color:black" onclick="deleteItem(\'' +
-          data[i].id +
+          products[i].os +
+          '</td><td><a href="#" onclick="deleteItem(\'' +
+          products[i].id +
           "')\">X</a></td></tr>";
         isSearch = true;
       }

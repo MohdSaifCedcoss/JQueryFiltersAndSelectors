@@ -5,29 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JQuery Selectors And Filters</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="filters">
-        <select name="filter" id="filterOS">
-            <option value="none">Filter By OS</option>
-            <option value="ios">iOS</option>
-            <option value="android">Android</option>
-            <option value="windows">Windows</option>
+    <!-- Main container -->
+    <div class="container">
+      <div class="filters">
+        <!-- Dropdown for OS -->
+        <select name="filter" id="filterOS" class="selFilter">
+          <option value="none">Filter By OS</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="windows">Windows</option>
         </select>
-        <select name="filters" id="filterBrand">
-            <option value="none">Filter By Brand</option>
-            <option value="apple">Apple</option>
-            <option value="asus">Asus</option>
-            <option value="motorola">Motorola</option>
-            <option value="samsung">Samsung</option>
+        <!-- Dropdown for brands -->
+        <select name="filters" id="filterBrand" class="selFilter">
+          <option value="none">Filter By Brand</option>
+          <option value="apple">Apple</option>
+          <option value="asus">Asus</option>
+          <option value="motorola">Motorola</option>
+          <option value="samsung">Samsung</option>
         </select>
-    </div>
-    <div id="main"></div><br>
-    <div id="search">
-        <input type="text" id="searchedText" placeholder="Enter id or name">
+      </div>
+      <br />
+      <!-- This will show our table results -->
+      <div id="main"></div>
+      <br />
+      <!-- To search the product -->
+      <div id="search">
+        <input type="text" id="searchedText" class='searching' placeholder="Enter id or name" />
         <button id="searchData">Search</button>
+      </div>
     </div>
   </body>
+  <!-- Jquery CDN -->
   <script
     src="https://code.jquery.com/jquery-3.6.1.js"
     integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
